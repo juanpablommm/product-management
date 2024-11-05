@@ -39,5 +39,8 @@ gradle clean build
 gradle bootRun
 ```
 
+## Quality Gates News
+![image](https://github.com/user-attachments/assets/6959b57f-2103-4aa5-9715-a72bb9a69de4)
+
 
 © Juan Pablo Montoya Ospinal
