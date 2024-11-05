@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: product-management
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    password: 060900diminombre
+    username: juampis
+  jpa:
+    properties:
+      hibernate:
+        default_schema: product_management
+
+server:
+  port: 8081
+  servlet:
+    context-path: /product-management
+
+settings-jks:
+  path: src/main/resources/ecommerce.jks
+  alias: key-rsa-ecommerce
+  password: ecommerce2024
+
+settings-refresh-token:
+  times:
+    jwt: 5

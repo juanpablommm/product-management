@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: product-management
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
