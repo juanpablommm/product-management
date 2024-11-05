@@ -14,7 +14,7 @@
 
 
 # git-encrypt
-.git-crypt/
+.git-crypt/**
 
 
 .idea
