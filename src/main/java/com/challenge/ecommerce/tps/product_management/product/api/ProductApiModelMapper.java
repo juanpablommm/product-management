@@ -14,8 +14,9 @@ public class ProductApiModelMapper implements ProductApiMapper {
 	@Override
 	public Product toDomain(final CreateProductRequestDto createProductRequestDto) {
 		final OffsetDateTime dateTimeNow = OffsetDateTime.now(ZoneId.of("America/Bogota"));
-		return Product.forCreate(createProductRequestDto.productName(), createProductRequestDto.description(),
-				createProductRequestDto.urlImage(), dateTimeNow);
+		return Product.forCreate(createProductRequestDto.productName(), createProductRequestDto.urlImage(),
+				createProductRequestDto.description(), createProductRequestDto.price(), createProductRequestDto.brand(),
+				Boolean.TRUE, dateTimeNow);
 	}
 
 	@Override
@@ -23,6 +24,7 @@ public class ProductApiModelMapper implements ProductApiMapper {
 		final OffsetDateTime publishedTime = OffsetDateTime.now();
 		final String publishedTimeFormated = publishedTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 		return new ProductResponseDto(product.getProductName(), product.getDescription(), product.getUrlProductImage(),
-				publishedTimeFormated);
+				publishedTimeFormated, product.getBrand(), product.getPrice(), product.getEnabled(),
+				product.getProductCode());
 	}
 }

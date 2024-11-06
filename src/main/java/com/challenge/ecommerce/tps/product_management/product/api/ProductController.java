@@ -3,6 +3,7 @@ package com.challenge.ecommerce.tps.product_management.product.api;
 import com.challenge.ecommerce.tps.product_management.product.api.create.CreateProductRequestDto;
 import com.challenge.ecommerce.tps.product_management.product.api.find.ProductResponseDto;
 import com.challenge.ecommerce.tps.product_management.product.application.create.CreateProductCommandHandler;
+import com.challenge.ecommerce.tps.product_management.product.application.finaAll.FindAllCommandHandler;
 import com.challenge.ecommerce.tps.product_management.product.application.find.FindProductCommandHandler;
 import com.challenge.ecommerce.tps.product_management.product.domain.Product;
 import jakarta.validation.Valid;
@@ -25,11 +26,20 @@ public class ProductController {
 	private final ProductApiMapper productApiMapper;
 	private final CreateProductCommandHandler createProductCommandHandler;
 	private final FindProductCommandHandler findProductCommandHandler;
+	private final FindAllCommandHandler findAllCommandHandler;
 
 	// TODO: with pagination alter
 	@GetMapping(path = "/find")
 	public ResponseEntity<List<ProductResponseDto>> getByProductName(@RequestParam String productName) {
 		List<Product> products = this.findProductCommandHandler.handler(productName);
+		return ResponseEntity.ok(products.stream().map(this.productApiMapper::toResponseDto).toList());
+	}
+
+	// TODO aplicar paginado con una futura implmentacion, tambien si se espadnde a
+	// los cirterios de busqueda
+	@GetMapping(path = "/find/all")
+	public ResponseEntity<List<ProductResponseDto>> findAll() {
+		final List<Product> products = this.findAllCommandHandler.handler();
 		return ResponseEntity.ok(products.stream().map(this.productApiMapper::toResponseDto).toList());
 	}
 

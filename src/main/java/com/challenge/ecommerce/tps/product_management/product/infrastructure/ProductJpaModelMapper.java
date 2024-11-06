@@ -12,7 +12,8 @@ public class ProductJpaModelMapper implements ProductJpaMapper {
 	@Override
 	public Product toDomain(final ProductEntity productEntity) {
 		return new Product(productEntity.getProductId(), productEntity.getProductName(), productEntity.getDescription(),
-				productEntity.getUrlProductImage(), productEntity.getPublishedTime());
+				productEntity.getUrlProductImage(), productEntity.getPrice(), productEntity.getBrand(),
+				productEntity.getEnabled(), productEntity.getPublishedTime(), productEntity.getProductCode());
 	}
 
 	@Override

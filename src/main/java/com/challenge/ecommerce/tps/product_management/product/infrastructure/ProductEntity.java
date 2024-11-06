@@ -1,12 +1,16 @@
 package com.challenge.ecommerce.tps.product_management.product.infrastructure;
 
+import com.challenge.ecommerce.tps.product_management.user.infrastructure.UserEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +40,15 @@ public class ProductEntity {
 	@Column(name = "description")
 	private String description;
 
+	@Column(name = "price")
+	private BigDecimal price;
+
+	@Column(name = "brand")
+	private String brand;
+
+	@Column(name = "enabled")
+	private Boolean enabled;
+
 	@Column(name = "url_product_image")
 	private String urlProductImage;
 
@@ -43,4 +56,10 @@ public class ProductEntity {
 	@Column(name = "published_time")
 	private OffsetDateTime publishedTime;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private UserEntity user;
+
+	@Column(name = "productcode")
+	private String productCode;
 }
